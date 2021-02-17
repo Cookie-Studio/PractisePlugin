@@ -1,0 +1,31 @@
+maps:
+  arena:
+    name: "Arena"
+    folder: "1"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 69
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 69
+      z: 31.5
+
+kits:
+  buhc:
+    # item format id:meta(enchId:enchLvl,anotherEnch)
+    helmet: "306:0"
+    chestplate: "307:0"
+    leggings: "308:0"
+    boots: "309:0"
+    items: ["267:0(9:1)","322:0"]
+    maps: ["arena"]
+
+title: "§2§lDUEL" #scoreboard title
+scoreboard:
+  - "----------"
+  - "Map: %map%"
+  - "Against: %against%"
+  - "----------"
+  - "§e§lminecraft.net"

@@ -1,0 +1,12 @@
+prefix: "§2§lDUEL §8> §7"
+command:
+  not_input_kit: "Please input kit name"
+  illegal_kit: "Cannot Found Target Kit"
+  player_offline: "Target player not online!"
+  queued: "Queued!Type /prapl leave to leave queue"
+  already_in: "You are in a queue now"
+  not_in: "You not in any queue"
+  left_queue: "You left the queue"
+play:
+  fight_title: "FIGHT!"
+  fight_against: "You Are Fight Against %name%"

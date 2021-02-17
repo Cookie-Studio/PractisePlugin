@@ -1,0 +1,6 @@
+name: PractisePlugin
+main: me.liuli.pra.PractisePlugin
+version: "1.0"
+author: liulihaocai
+api: ["1.0.0"]
+description: plugin
