@@ -13,7 +13,8 @@ public class CommandListener extends Command {
     private String message ="PractisePlugin By Liuli!";
     private String help ="/prapl join <kitId>\n"
             +"/prapl leave\n"
-            +"/prapl <name>";
+            +"/prapl <name>"
+            +"/prapl version";
 
     public CommandListener() {
         super("prapl", "PractisePlugin By Liuli!");
@@ -42,20 +43,26 @@ public class CommandListener extends Command {
                 }
                 if(PlayerManager.isPlayerIn(player)){
                     sender.sendMessage(LanguageManager.already_in);
+                    return false;
                 }
                 PlayerManager.addPlayer(player, kit);
+                sender.sendMessage(LanguageManager.queued);
                 break;
             }
             case "leave":{
                 if(!PlayerManager.isPlayerIn(player)){
                     sender.sendMessage(LanguageManager.not_in);
                 }
-//                PlayerManager.removePlayer(player);
+                PlayerManager.removePlayer(player);
                 sender.sendMessage(LanguageManager.left_queue);
                 break;
             }
             case "help":{
                 sender.sendMessage(help);
+                break;
+            }
+            case "version":{
+                sender.sendMessage(message);
                 break;
             }
             default:{

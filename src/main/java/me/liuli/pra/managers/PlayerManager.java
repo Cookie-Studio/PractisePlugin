@@ -31,4 +31,17 @@ public class PlayerManager {
         //waiting duel invite
         return false;
     }
+
+    public static void removePlayer(Player player) {
+        if(queuedPlayers.containsValue(player)){
+            for(Map.Entry<String,Player> entry:queuedPlayers.entrySet()){
+                if(entry.getValue().equals(player)){
+                    queuedPlayers.remove(entry.getKey());
+                }
+            }
+        }
+        if(playingPlayers.get(player.getUniqueId())!=null){
+            playingPlayers.get(player.getUniqueId()).close(true);
+        }
+    }
 }

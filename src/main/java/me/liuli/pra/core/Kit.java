@@ -18,6 +18,8 @@ public class Kit {
     public Item boots;
     public Item[] items;
     public GameMap[] maps;
+    public int hp,ac;
+    public float kb;
 
     private int randomMapCount=0;
 
@@ -40,6 +42,10 @@ public class Kit {
             gameMapCache.add(Manager.gameMaps.get((String) data));
         }
         maps=gameMapCache.toArray(new GameMap[0]);
+
+        hp=json.getInteger("hp");
+        ac=json.getInteger("ac");
+        kb=json.getFloat("kb");
     }
 
     public GameMap getGameMap(){

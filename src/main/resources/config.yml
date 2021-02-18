@@ -14,18 +14,21 @@ maps:
 
 kits:
   buhc:
-    # item format id:meta(enchId:enchLvl,anotherEnch)
-    helmet: "306:0"
-    chestplate: "307:0"
-    leggings: "308:0"
-    boots: "309:0"
-    items: ["267:0(9:1)","322:0"]
+    # item format id:meta(enchId:enchLvl,anotherEnch)-count
+    hp: 40
+    helmet: "306:0(0:3)"
+    chestplate: "307:0(0:3)"
+    leggings: "308:0(0:3)"
+    boots: "309:0(0:3)"
+    items: ["267:0(9:1)","322:0-5"]
     maps: ["arena"]
+    ac: 5
+    kb: 0.3
 
 title: "§2§lDUEL" #scoreboard title
 scoreboard:
-  - "----------"
+  - "--------------"
   - "Map: %map%"
   - "Against: %against%"
-  - "----------"
-  - "§e§lminecraft.net"
+  - "--------------."
+  - "§e§lFINALGAME.CN"

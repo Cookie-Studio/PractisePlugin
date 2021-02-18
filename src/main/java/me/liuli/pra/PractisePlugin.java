@@ -2,6 +2,7 @@ package me.liuli.pra;
 
 import cn.nukkit.plugin.PluginBase;
 import me.liuli.pra.listeners.CommandListener;
+import me.liuli.pra.listeners.PlayerListener;
 import me.liuli.pra.managers.LanguageManager;
 import me.liuli.pra.managers.Manager;
 import me.liuli.pra.utils.OtherUtil;
@@ -37,6 +38,7 @@ public class PractisePlugin extends PluginBase {
 
         Manager.load(this);
         LanguageManager.load();
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         this.getServer().getCommandMap().register("prapl",new CommandListener());
     }
 }
