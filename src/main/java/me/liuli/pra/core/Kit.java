@@ -18,47 +18,47 @@ public class Kit {
     public Item boots;
     public Item[] items;
     public GameMap[] maps;
-    public int hp,ac;
+    public int hp, ac;
     public float kb;
 
-    private int randomMapCount=0;
+    private int randomMapCount = 0;
 
-    public Kit(String id, JSONObject json){
-        this.id=id;
+    public Kit(String id, JSONObject json) {
+        this.id = id;
         this.helmet = ItemUtil.itemPhaser(json.getString("helmet"));
         this.chestplate = ItemUtil.itemPhaser(json.getString("chestplate"));
         this.leggings = ItemUtil.itemPhaser(json.getString("leggings"));
         this.boots = ItemUtil.itemPhaser(json.getString("boots"));
 
-        JSONArray itemArray=json.getJSONArray("items");
-        ArrayList<Item> itemCache=new ArrayList<>();
-        for(Object data:itemArray){
+        JSONArray itemArray = json.getJSONArray("items");
+        ArrayList<Item> itemCache = new ArrayList<>();
+        for (Object data : itemArray) {
             itemCache.add(ItemUtil.itemPhaser((String) data));
         }
-        items=itemCache.toArray(new Item[0]);
+        items = itemCache.toArray(new Item[0]);
 
-        ArrayList<GameMap> gameMapCache=new ArrayList<>();
-        for(Object data:json.getJSONArray("maps")){
+        ArrayList<GameMap> gameMapCache = new ArrayList<>();
+        for (Object data : json.getJSONArray("maps")) {
             gameMapCache.add(Manager.gameMaps.get((String) data));
         }
-        maps=gameMapCache.toArray(new GameMap[0]);
+        maps = gameMapCache.toArray(new GameMap[0]);
 
-        hp=json.getInteger("hp");
-        ac=json.getInteger("ac");
-        kb=json.getFloat("kb");
+        hp = json.getInteger("hp");
+        ac = json.getInteger("ac");
+        kb = json.getFloat("kb");
     }
 
-    public GameMap getGameMap(){
-        if(!(randomMapCount<maps.length)){
-            randomMapCount=0;
+    public GameMap getGameMap() {
+        if (!(randomMapCount < maps.length)) {
+            randomMapCount = 0;
         }
-        GameMap gameMap=maps[randomMapCount];
+        GameMap gameMap = maps[randomMapCount];
         randomMapCount++;
         return gameMap;
     }
 
-    public void addItem(Player player){
-        PlayerInventory inventory=player.getInventory();
+    public void addItem(Player player) {
+        PlayerInventory inventory = player.getInventory();
         inventory.clearAll();
 
         inventory.setHelmet(this.helmet);

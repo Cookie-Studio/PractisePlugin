@@ -11,15 +11,15 @@ public class GameMap {
     public Vector3 redSpawn;
     public Vector3 blueSpawn;
 
-    public GameMap(String id,JSONObject json){
-        this.id=id;
-        this.folderName=json.getString("folder");
-        this.mapName=json.getString("name");
-        this.time=json.getInteger("time");
+    public GameMap(String id, JSONObject json) {
+        this.id = id;
+        this.folderName = json.getString("folder");
+        this.mapName = json.getString("name");
+        this.time = json.getInteger("time");
 
         JSONObject location = json.getJSONObject("red");
-        this.redSpawn=new Vector3(location.getFloat("x"),location.getFloat("y"),location.getFloat("z"));
+        this.redSpawn = new Vector3(location.getFloat("x"), location.getFloat("y"), location.getFloat("z"));
         location = json.getJSONObject("blue");
-        this.blueSpawn=new Vector3(location.getFloat("x"),location.getFloat("y"),location.getFloat("z"));
+        this.blueSpawn = new Vector3(location.getFloat("x"), location.getFloat("y"), location.getFloat("z"));
     }
 }

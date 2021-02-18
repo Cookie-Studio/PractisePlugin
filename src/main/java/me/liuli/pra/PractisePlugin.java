@@ -14,23 +14,23 @@ public class PractisePlugin extends PluginBase {
     public static PractisePlugin plugin;
 
     @Override
-    public void onLoad(){
-        getServer().getProperties().set("spawn-protection",0);
+    public void onLoad() {
+        getServer().getProperties().set("spawn-protection", 0);
     }
 
     @Override
     public void onEnable() {
         plugin = this;
 
-        if(!this.getServer().getPluginManager().getPlugins().containsKey("FastJSONLib")){
+        if (!this.getServer().getPluginManager().getPlugins().containsKey("FastJSONLib")) {
             //download plugin
             try {
-                String pluginPath=this.getServer().getPluginPath();
+                String pluginPath = this.getServer().getPluginPath();
                 OtherUtil.downloadFile("https://github.com/liulihaocai/FJL/releases/download/1.0/FastJSONLib-1.0.jar",
-                        pluginPath,"FastJSONLib-1.0.jar");
+                        pluginPath, "FastJSONLib-1.0.jar");
                 //then load it
                 this.getServer().getPluginManager()
-                        .loadPlugin(new File(pluginPath,"FastJSONLib-1.0.jar").getPath());
+                        .loadPlugin(new File(pluginPath, "FastJSONLib-1.0.jar").getPath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,6 +39,6 @@ public class PractisePlugin extends PluginBase {
         Manager.load(this);
         LanguageManager.load();
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-        this.getServer().getCommandMap().register("prapl",new CommandListener());
+        this.getServer().getCommandMap().register("prapl", new CommandListener());
     }
 }

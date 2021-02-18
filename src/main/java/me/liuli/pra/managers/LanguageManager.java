@@ -21,27 +21,27 @@ public class LanguageManager {
     public static String fight_title,
             fight_against;
 
-    public static void load(){
-        if(!new File(PractisePlugin.plugin.getDataFolder().getPath()+"/lang.yml").exists()){
-            OtherUtil.writeFile(PractisePlugin.plugin.getDataFolder().getPath()+"/lang.yml",
+    public static void load() {
+        if (!new File(PractisePlugin.plugin.getDataFolder().getPath() + "/lang.yml").exists()) {
+            OtherUtil.writeFile(PractisePlugin.plugin.getDataFolder().getPath() + "/lang.yml",
                     OtherUtil.getTextFromResource("lang.yml"));
         }
 
-        JSONObject langJSON=JSONObject.parseObject(OtherUtil.y2j(new File(PractisePlugin.plugin.getDataFolder().getPath()+"/lang.yml")));
+        JSONObject langJSON = JSONObject.parseObject(OtherUtil.y2j(new File(PractisePlugin.plugin.getDataFolder().getPath() + "/lang.yml")));
 
-        prefix=langJSON.getString("prefix");
+        prefix = langJSON.getString("prefix");
 
-        JSONObject command=langJSON.getJSONObject("command");
-        not_input_kit=prefix+command.getString("not_input_kit");
-        illegal_kit=prefix+command.getString("illegal_kit");
-        player_offline=prefix+command.getString("player_offline");
-        queued=prefix+command.getString("queued");
-        already_in=prefix+command.getString("already_in");
-        not_in=prefix+command.getString("not_in");
-        left_queue=prefix+command.getString("left_queue");
+        JSONObject command = langJSON.getJSONObject("command");
+        not_input_kit = prefix + command.getString("not_input_kit");
+        illegal_kit = prefix + command.getString("illegal_kit");
+        player_offline = prefix + command.getString("player_offline");
+        queued = prefix + command.getString("queued");
+        already_in = prefix + command.getString("already_in");
+        not_in = prefix + command.getString("not_in");
+        left_queue = prefix + command.getString("left_queue");
 
-        JSONObject play=langJSON.getJSONObject("play");
-        fight_title=play.getString("fight_title");
-        fight_against=LanguageManager.prefix+play.getString("fight_against");
+        JSONObject play = langJSON.getJSONObject("play");
+        fight_title = play.getString("fight_title");
+        fight_against = LanguageManager.prefix + play.getString("fight_against");
     }
 }
