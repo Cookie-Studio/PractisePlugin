@@ -7,6 +7,11 @@ command:
   already_in: "You are in a queue now"
   not_in: "You not in any queue"
   left_queue: "You left the queue"
+  target_not_online: "Target player offline"
+  invite: "%name% invite you to duel, please type /prapl accept %name% to accept!"
+  invited: "invited!Waiting for accept"
 play:
-  fight_title: "FIGHT!"
+  fight_title: "§b§lFIGHT"
+  vict_title: "§e§lVICTORY"
+  lose_title: "§c§lYOU DIED"
   fight_against: "You Are Fight Against %name%"

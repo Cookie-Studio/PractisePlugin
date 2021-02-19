@@ -11,6 +11,7 @@ import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.level.Position;
 import me.liuli.pra.core.Room;
+import me.liuli.pra.managers.LanguageManager;
 import me.liuli.pra.managers.PlayerManager;
 import me.liuli.pra.utils.PlayerUtil;
 
@@ -22,6 +23,8 @@ import java.util.TimerTask;
 public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onQuit(PlayerQuitEvent event) {
+        PlayerManager.duelInvites.remove(event.getPlayer().getUniqueId());
+
         Room room = PlayerManager.playingPlayers.get(event.getPlayer().getUniqueId());
         if (room != null) {
             new Timer().schedule(new TimerTask() {
@@ -85,17 +88,24 @@ public class PlayerListener implements Listener {
         Player player = ((Player) event.getEntity());
         Room room = PlayerManager.playingPlayers.get(player.getUniqueId());
         if (room != null) {
+            if (!room.damageAble) {
+                event.setCancelled();
+                return;
+            }
             if ((player.getHealth() - event.getDamage()) <= 0) {
                 event.setCancelled();
 
                 ArrayList<String> message = new ArrayList<>();
                 message.add("--------------------");
                 if (player.equals(room.red)) {
+                    room.blue.sendTitle(LanguageManager.vict_title);
                     message.add("WINNER: " + room.blue.getName() + " (" + ((int) player.getHealth()) + " HP)");
                 } else {
+                    room.red.sendTitle(LanguageManager.vict_title);
                     message.add("WINNER: " + room.red.getName() + " (" + ((int) player.getHealth()) + " HP)");
                 }
                 message.add("LOSER: " + player.getName());
+                player.sendTitle(LanguageManager.lose_title);
                 message.add("--------------------");
 
                 for (String msg : message) {
@@ -103,7 +113,15 @@ public class PlayerListener implements Listener {
                     room.blue.sendMessage(msg);
                 }
 
-                room.close(true);
+                room.damageAble = false;
+                player.getInventory().clearAll();
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        room.close(true);
+                    }
+                }, 5000);
             }
         }
     }

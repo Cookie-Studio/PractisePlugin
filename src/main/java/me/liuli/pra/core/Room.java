@@ -19,6 +19,7 @@ public class Room {
     public Scoreboard redScoreboard, blueScoreboard;
     public Kit kit;
     public GameMap gameMap;
+    public boolean damageAble = false;
 
     public Room(Level level, Player red, Player blue, Kit kit, GameMap gameMap) {
         this.level = level;

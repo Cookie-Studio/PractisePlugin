@@ -11,6 +11,8 @@ import me.liuli.pra.core.Room;
 import me.liuli.pra.utils.OtherUtil;
 import me.liuli.pra.utils.PlayerUtil;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class RoomManager {
@@ -43,13 +45,29 @@ public class RoomManager {
             PlayerUtil.removeAllEffect(red);
             PlayerUtil.removeAllEffect(blue);
 
-            red.sendTitle(LanguageManager.fight_title);
-            blue.sendTitle(LanguageManager.fight_title);
             red.sendMessage(LanguageManager.fight_against.replaceAll("%name%", blue.getName()));
             blue.sendMessage(LanguageManager.fight_against.replaceAll("%name%", red.getName()));
 
             room.updateBlueScoreboard();
             room.updateRedScoreboard();
+
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                int count = 5;
+
+                @Override
+                public void run() {
+                    red.sendTitle("§e§l" + count);
+                    blue.sendTitle("§e§l" + count);
+                    count--;
+                    if (count == -1) {
+                        red.sendTitle(LanguageManager.fight_title);
+                        blue.sendTitle(LanguageManager.fight_title);
+                        room.damageAble = true;
+                        timer.cancel();
+                    }
+                }
+            }, 1000, 1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
