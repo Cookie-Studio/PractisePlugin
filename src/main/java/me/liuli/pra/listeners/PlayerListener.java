@@ -8,6 +8,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.entity.EntityTeleportEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.level.Position;
 import me.liuli.pra.core.Room;
@@ -99,10 +100,10 @@ public class PlayerListener implements Listener {
                 message.add("--------------------");
                 if (player.equals(room.red)) {
                     room.blue.sendTitle(LanguageManager.vict_title);
-                    message.add("WINNER: " + room.blue.getName() + " (" + ((int) player.getHealth()) + " HP)");
+                    message.add("WINNER: " + room.blue.getName() + " (" + ((int) room.blue.getHealth()) + " HP)");
                 } else {
                     room.red.sendTitle(LanguageManager.vict_title);
-                    message.add("WINNER: " + room.red.getName() + " (" + ((int) player.getHealth()) + " HP)");
+                    message.add("WINNER: " + room.red.getName() + " (" + ((int) room.red.getHealth()) + " HP)");
                 }
                 message.add("LOSER: " + player.getName());
                 player.sendTitle(LanguageManager.lose_title);
@@ -123,6 +124,18 @@ public class PlayerListener implements Listener {
                     }
                 }, 5000);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onTeleport(EntityTeleportEvent event){
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+        Player player = ((Player) event.getEntity());
+        if(!event.getTo().getLevel().equals(event.getFrom().getLevel())){
+            PlayerManager.removePlayer(player);
+            PlayerManager.duelInvites.remove(player.getUniqueId());
         }
     }
 }
