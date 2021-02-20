@@ -19,7 +19,7 @@ public class Kit {
     public Item[] items;
     public GameMap[] maps;
     public int hp, ac;
-    public float kb;
+    public float basekb,xzkb_g,ykb_g,xzkb,ykb;
     public boolean damage;
 
     private int randomMapCount = 0;
@@ -46,7 +46,11 @@ public class Kit {
 
         hp = json.getInteger("hp");
         ac = json.getInteger("ac");
-        kb = json.getFloat("kb");
+        basekb = json.getFloat("basekb");
+        xzkb_g = json.getFloat("xzkb-g");
+        xzkb = json.getFloat("xzkb");
+        ykb_g = json.getFloat("ykb-g");
+        ykb = json.getFloat("ykb");
         damage = json.getBoolean("damage");
     }
 

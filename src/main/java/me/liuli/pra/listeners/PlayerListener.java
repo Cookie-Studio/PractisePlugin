@@ -2,20 +2,25 @@ package me.liuli.pra.listeners;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.entity.data.EntityMetadata;
+import cn.nukkit.entity.data.FloatEntityData;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
-import cn.nukkit.event.entity.EntityDamageByEntityEvent;
-import cn.nukkit.event.entity.EntityDamageEvent;
-import cn.nukkit.event.entity.EntityRegainHealthEvent;
-import cn.nukkit.event.entity.EntityTeleportEvent;
+import cn.nukkit.event.entity.*;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.inventory.PlayerInventory;
+import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
+import cn.nukkit.math.Vector3;
+import cn.nukkit.network.protocol.SetEntityDataPacket;
+import me.liuli.pra.core.Kit;
 import me.liuli.pra.core.Room;
 import me.liuli.pra.managers.LanguageManager;
 import me.liuli.pra.managers.PlayerManager;
+import me.liuli.pra.utils.OtherUtil;
 import me.liuli.pra.utils.PlayerUtil;
 
 import java.util.ArrayList;
@@ -79,7 +84,28 @@ public class PlayerListener implements Listener {
         Room room = PlayerManager.playingPlayers.get(player.getUniqueId());
         if (room != null) {
             event.setAttackCooldown(room.kit.ac);
-            event.setKnockBack(room.kit.kb);
+            event.setKnockBack(room.kit.basekb);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityMotion(EntityMotionEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+        Player player = ((Player) event.getEntity());
+        Room room = PlayerManager.playingPlayers.get(player.getUniqueId());
+        if (room != null) {
+            Kit kit=room.kit;
+            if(player.onGround) {
+                event.getMotion().x *= kit.xzkb_g;
+                event.getMotion().y *= kit.ykb_g;
+                event.getMotion().z *= kit.xzkb_g;
+            }else{
+                event.getMotion().x *= kit.xzkb;
+                event.getMotion().y *= kit.ykb;
+                event.getMotion().z *= kit.xzkb;
+            }
         }
     }
 
@@ -120,7 +146,12 @@ public class PlayerListener implements Listener {
                 }
 
                 room.damageAble = false;
-                player.getInventory().clearAll();
+
+                PlayerInventory inventory=player.getInventory();
+                for(Map.Entry<Integer, Item> entry:inventory.getContents().entrySet()){
+                    player.level.dropItem(player,entry.getValue(), new Vector3(OtherUtil.randDouble(0.5,-0.5),0.3,OtherUtil.randDouble(0.5,-0.5)),true,3000);
+                }
+                inventory.clearAll();
 
                 new Timer().schedule(new TimerTask() {
                     @Override

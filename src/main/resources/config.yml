@@ -82,8 +82,12 @@ kits:
     boots: "309:0(0:3)"
     items: [ "267:0(9:1)","322:0-5","261:0","259:0","262:0-64" ]
     maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
-    ac: 5
-    kb: 0.3
+    ac: 8
+    basekb: 0.4
+    xzkb-g: 0.64
+    ykb-g: 0.87
+    xzkb: 0.67
+    ykb: 1.055
     damage: true
   bow:
     hp: 20
@@ -93,8 +97,12 @@ kits:
     boots: "301:0"
     items: [ "261:0(22:3,20:1)","368:0-8","262:0-64" ]
     maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
-    ac: 20
-    kb: 0.4
+    ac: 8
+    basekb: 0.4
+    xzkb-g: 0.64
+    ykb-g: 0.87
+    xzkb: 0.67
+    ykb: 1.055
     damage: true
   combo:
     hp: 20
@@ -105,7 +113,11 @@ kits:
     items: [ "276:0(17:3)","322:0-64","373:31-2","373:15-2" ]
     maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
     ac: 0
-    kb: 0.5
+    basekb: 0.65
+    xzkb-g: 0.33
+    ykb-g: 0.39
+    xzkb: 0.37
+    ykb: 0.235
     damage: true
   nodebuff:
     hp: 20
@@ -115,8 +127,12 @@ kits:
     boots: "313:0(0:2,17:3)"
     items: [ "276:0(9:2,13:1,17:3)","368:0-16","373:13","373:15","438:22-4","364:0-64","438:22-23","373:13-2","373:15-2" ]
     maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
-    ac: 3
-    kb: 0.3
+    ac: 10
+    basekb: 0.4
+    xzkb-g: 0.8
+    ykb-g: 0.79
+    xzkb: 0.83
+    ykb: 1.01
     damage: true
 
 title: "§2§lDUEL" #scoreboard title

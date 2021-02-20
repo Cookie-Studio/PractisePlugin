@@ -135,4 +135,8 @@ public class OtherUtil {
         }
         new File(dir).delete();
     }
+
+    public static double randDouble(double max, double min) {
+        return Math.random() * (max - min) + min;
+    }
 }
