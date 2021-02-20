@@ -47,6 +47,8 @@ public class RoomManager {
 
             red.sendMessage(LanguageManager.fight_against.replaceAll("%name%", blue.getName()));
             blue.sendMessage(LanguageManager.fight_against.replaceAll("%name%", red.getName()));
+            red.setMovementSpeed(0.0F,true);
+            blue.setMovementSpeed(0.0F,true);
 
             room.updateBlueScoreboard();
             room.updateRedScoreboard();
@@ -63,6 +65,8 @@ public class RoomManager {
                     if (count == -1) {
                         red.sendTitle(LanguageManager.fight_title);
                         blue.sendTitle(LanguageManager.fight_title);
+                        red.setMovementSpeed(0.1F,true);
+                        blue.setMovementSpeed(0.1F,true);
                         room.damageAble = true;
                         timer.cancel();
                     }

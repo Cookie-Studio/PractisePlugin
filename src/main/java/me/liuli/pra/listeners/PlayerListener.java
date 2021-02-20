@@ -8,7 +8,9 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.entity.EntityRegainHealthEvent;
 import cn.nukkit.event.entity.EntityTeleportEvent;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.level.Position;
 import me.liuli.pra.core.Room;
@@ -93,7 +95,10 @@ public class PlayerListener implements Listener {
                 event.setCancelled();
                 return;
             }
-            if ((player.getHealth() - event.getDamage()) <= 0) {
+            if(!room.kit.damage){
+                event.setDamage(-1);
+            }
+            if ((player.getHealth() - event.getFinalDamage()) <= 1) {
                 event.setCancelled();
 
                 ArrayList<String> message = new ArrayList<>();
@@ -138,4 +143,17 @@ public class PlayerListener implements Listener {
             PlayerManager.duelInvites.remove(player.getUniqueId());
         }
     }
+
+//    打pot不回血了
+//    @EventHandler(priority = EventPriority.HIGHEST)
+//    public void onRegain(EntityRegainHealthEvent event){
+//        if (!(event.getEntity() instanceof Player)) {
+//            return;
+//        }
+//        Player player = ((Player) event.getEntity());
+//        Room room = PlayerManager.playingPlayers.get(player.getUniqueId());
+//        if (room != null) {
+//            event.setCancelled();
+//        }
+//    }
 }

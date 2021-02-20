@@ -20,6 +20,7 @@ public class Kit {
     public GameMap[] maps;
     public int hp, ac;
     public float kb;
+    public boolean damage;
 
     private int randomMapCount = 0;
 
@@ -46,10 +47,11 @@ public class Kit {
         hp = json.getInteger("hp");
         ac = json.getInteger("ac");
         kb = json.getFloat("kb");
+        damage = json.getBoolean("damage");
     }
 
     public GameMap getGameMap() {
-        if (!(randomMapCount < maps.length)) {
+        if (randomMapCount >= maps.length) {
             randomMapCount = 0;
         }
         GameMap gameMap = maps[randomMapCount];

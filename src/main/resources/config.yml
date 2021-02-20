@@ -1,7 +1,55 @@
 maps:
-  arena:
-    name: "Arena"
-    folder: "1"
+  fightnight:
+    name: "Fight Night"
+    folder: "3"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 72
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 72
+      z: 31.5
+  fractal:
+    name: "Fractal"
+    folder: "4"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 65
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 65
+      z: 31.5
+  highset:
+    name: "Highset"
+    folder: "5"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 74
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 74
+      z: 31.5
+  museum:
+    name: "Museum"
+    folder: "6"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 75
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 75
+      z: 31.5
+  neon:
+    name: "Neon"
+    folder: "7"
     time: 0
     red: #red spawn pos
       x: 0.5
@@ -11,19 +59,65 @@ maps:
       x: 0.5
       y: 69
       z: 31.5
+  spikerockbay:
+    name: "SpikeRock Bay"
+    folder: "10"
+    time: 0
+    red: #red spawn pos
+      x: 0.5
+      y: 75
+      z: -31.5
+    blue: #blue spawn pos
+      x: 0.5
+      y: 75
+      z: 31.5
 
 kits:
-  buhc:
+  classic:
     # item format id:meta(enchId:enchLvl,anotherEnch)-count
     hp: 40
     helmet: "306:0(0:3)"
     chestplate: "307:0(0:3)"
     leggings: "308:0(0:3)"
     boots: "309:0(0:3)"
-    items: ["267:0(9:1)","322:0-5"]
-    maps: ["arena"]
+    items: [ "267:0(9:1)","322:0-5","261:0","259:0","262:0-64" ]
+    maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
     ac: 5
     kb: 0.3
+    damage: true
+  bow:
+    hp: 20
+    helmet: "298:0"
+    chestplate: "299:0"
+    leggings: "300:0"
+    boots: "301:0"
+    items: [ "261:0(22:3,20:1)","368:0-8","262:0-64" ]
+    maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
+    ac: 20
+    kb: 0.4
+    damage: true
+  combo:
+    hp: 20
+    helmet: "310:0(0:5,17:3)"
+    chestplate: "311:0(0:5,17:3)"
+    leggings: "312:0(0:5,17:3)"
+    boots: "313:0(0:5,17:3)"
+    items: [ "276:0(17:3)","322:0-64","373:31-2","373:15-2" ]
+    maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
+    ac: 0
+    kb: 0.5
+    damage: true
+  nodebuff:
+    hp: 20
+    helmet: "310:0(0:2,17:3)"
+    chestplate: "311:0(0:2,17:3)"
+    leggings: "312:0(0:2,17:3)"
+    boots: "313:0(0:2,17:3)"
+    items: [ "276:0(9:2,13:1,17:3)","368:0-16","373:13","373:15","438:22-4","364:0-64","438:22-23","373:13-2","373:15-2" ]
+    maps: [ "fightnight","fractal","highset","museum","neon","spikerockbay" ]
+    ac: 3
+    kb: 0.3
+    damage: true
 
 title: "§2§lDUEL" #scoreboard title
 scoreboard:
